@@ -1,0 +1,40 @@
+.mk-to-top-settings-wrap .form-table {
+  padding: 20px;
+}
+
+.mk-to-top-settings-wrap h1 {
+  color: #2271b1;
+  margin-bottom: 20px;
+}
+
+.mk-to-top-settings-wrap form table.form-table {
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.mk-to-top-settings-wrap input[type="text"],
+.mk-to-top-settings-wrap input[type="number"],
+.mk-to-top-settings-wrap input[type="color"] {
+  width: 60px;
+  padding: 5px;
+  border: 1px solid #ccd0d4;
+  border-radius: 4px;
+}
+
+.mk-to-top-settings-wrap input[type="radio"],
+.mk-to-top-settings-wrap input[type="checkbox"] {
+  margin-right: 6px;
+}
+
+.mk-to-top-settings-wrap label {
+  font-weight: 500;
+}
+
+.mk-to-top-settings-wrap .form-table td {
+  padding: 12px 10px;
+}
+
+td:has(label.mk-to-top-radio) {
+  display: flex;
+  column-gap: 12px;
+}
