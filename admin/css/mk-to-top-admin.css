@@ -15,7 +15,7 @@
 .mk-to-top-settings-wrap input[type="text"],
 .mk-to-top-settings-wrap input[type="number"],
 .mk-to-top-settings-wrap input[type="color"] {
-  width: 60px;
+  width: 100px;
   padding: 5px;
   border: 1px solid #ccd0d4;
   border-radius: 4px;
@@ -34,7 +34,12 @@
   padding: 12px 10px;
 }
 
-td:has(label.mk-to-top-radio) {
-  display: flex;
-  column-gap: 12px;
+.mk-to-top-settings-wrap .mk-to-top-color-field {
+  width: 220px;
+  max-width: 100%;
+}
+
+.mk-to-top-settings-wrap .mk-to-top-radio {
+  display: inline-block;
+  margin-inline-end: 12px;
 }

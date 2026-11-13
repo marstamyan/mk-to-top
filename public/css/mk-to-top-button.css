@@ -1,6 +1,7 @@
 #mk-to-top-btn {
   position: fixed;
   display: flex;
+  box-sizing: border-box;
   align-items: center;
   justify-content: center;
   cursor: pointer;
@@ -9,15 +10,21 @@
   transition: opacity 0.3s ease;
   z-index: 99999;
   margin: 0;
-  padding: 5px;
+  padding: 0;
   border: none;
   border-radius: 4px;
-  background-color: var(--mk-btn-bg-color, #000);
+  background: var(--mk-btn-bg-color, #000);
   width: var(--mk-btn-width, 40px);
   height: var(--mk-btn-height, 40px);
-  outline: none;
-  appearance: none; 
+  min-width: 0;
+  min-height: 0;
+  appearance: none;
   box-shadow: none;
+}
+
+/* The button's display rule must not override the native hidden attribute. */
+#mk-to-top-btn[hidden] {
+  display: none !important;
 }
 
 #mk-to-top-btn::before {
@@ -25,14 +32,24 @@
   display: block;
   width: 0;
   height: 0;
-  border-left: calc(var(--mk-btn-width, 50px) / 4) solid transparent;
-  border-right: calc(var(--mk-btn-width, 50px) / 4) solid transparent;
-  border-bottom: calc(var(--mk-btn-height, 50px) / 3) solid
-    var(--mk-btn-icon-color, #fff);
-  transition: padding 0.3s ease-in;
+  border-left: calc(var(--mk-btn-width, 40px) / 4) solid transparent;
+  border-right: calc(var(--mk-btn-width, 40px) / 4) solid transparent;
+  border-bottom: calc(var(--mk-btn-height, 40px) / 3) solid var(--mk-btn-icon-color, #fff);
 }
 
 #mk-to-top-btn.mk-visible {
   opacity: 1;
   pointer-events: auto;
+}
+
+#mk-to-top-btn:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px #000;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #mk-to-top-btn {
+    transition: none;
+  }
 }

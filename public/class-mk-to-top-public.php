@@ -1,5 +1,10 @@
 <?php
-class Mk_To_Top_Public {
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+class MK_To_Top_Public {
 
 	public function __construct() {
 		add_action( 'wp_footer', [ $this, 'render_scroll_button' ] );
@@ -29,31 +34,16 @@ class Mk_To_Top_Public {
 
 	public function render_scroll_button() {
 
-		$options = get_option( 'mk_to_top_options', [] );
-		$get = function ($key, $default) use ($options) {
-			return isset( $options[ $key ] ) ? esc_attr( $options[ $key ] ) : $default;
-		};
+		$options = mk_to_top_get_options();
 
-		$width = $get( 'btn_width', '40' );
-		$height = $get( 'btn_height', '40' );
-		$icon_color = $get( 'btn_icon_color', '#fff' );
-		$bg_color = $get( 'btn_bg_color', '#000' );
-		$position = $get( 'btn_position', 'right' );
-		$offset = $get( 'btn_offset', '30' );
-		$show_at = $get( 'btn_show_at', '300' );
-		$mobile = $get( 'btn_mobile', '1' );
-
-		echo '<button class="mk-to-top-btn" id="mk-to-top-btn"
-            data-mk-btn-width="' . $width . '"
-            data-mk-btn-height="' . $height . '"
-            data-mk-btn-icon-color="' . $icon_color . '"
-            data-mk-btn-bg-color="' . $bg_color . '"
-            data-mk-btn-position="' . $position . '"
-            data-mk-btn-offset="' . $offset . '"
-            data-mk-btn-show-at="' . $show_at . '"
-            data-mk-btn-mobile="' . ( $mobile === '1' ? 'true' : 'false' ) . '"
-            aria-label="Scroll to Top"
-        >
-        </button>';
+		echo '<button type="button" class="mk-to-top-btn" id="mk-to-top-btn" hidden tabindex="-1" aria-hidden="true"';
+		foreach ( $options as $key => $value ) {
+			$attribute = 'data-mk-' . str_replace( '_', '-', $key );
+			if ( 'btn_mobile' === $key ) {
+				$value = '1' === $value ? 'true' : 'false';
+			}
+			echo ' ' . esc_attr( $attribute ) . '="' . esc_attr( $value ) . '"';
+		}
+		echo ' aria-label="' . esc_attr__( 'Scroll to top', 'mk-to-top' ) . '"></button>';
 	}
 }
